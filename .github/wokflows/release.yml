@@ -1,0 +1,22 @@
+name: Release Module
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name : Install dependencies
+        run: npm install npx semantic-release @semantic-release/git @semantic-release/gitlab @semantic-release/npm 
+      - name: Semantic Release
+        run : npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
