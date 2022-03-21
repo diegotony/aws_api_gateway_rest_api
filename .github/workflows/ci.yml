@@ -7,20 +7,7 @@ on:
 
 jobs:
   validate:
-    name: Validate
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check out code  
-      uses: actions/checkout@v1
-
-    - name: Run a Terraform init  
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        entrypoint: terraform
-        args: init
-
-    - name: Run a Terraform validate    
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        entrypoint: terraform
-        args: validate
+    uses: diegotony/gh-pipelines/.github/workflows/terraform-validate.yml@main
+  docs:
+    needs: validate
+    uses: diegotony/gh-pipelines/.github/workflows/terraform-tfdocs.yml@main
