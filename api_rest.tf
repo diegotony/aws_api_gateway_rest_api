@@ -1,5 +1,5 @@
 locals {
-  tags = {template = "tf-modules", service = "lambda"}
+  tags = {template = "tf-modules", service = "api-gtwy"}
 }
 
 resource "aws_api_gateway_rest_api" "api_rest" {
